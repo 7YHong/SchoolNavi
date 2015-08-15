@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/SchoolMap.iml" filepath="$PROJECT_DIR$/SchoolMap.iml" />
       <module fileurl="file://$PROJECT_DIR$/recyclerview/recyclerview.iml" filepath="$PROJECT_DIR$/recyclerview/recyclerview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/schoolnavi.iml" filepath="$PROJECT_DIR$/schoolnavi.iml" />
     </modules>
   </component>
 </project>

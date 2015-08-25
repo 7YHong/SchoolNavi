@@ -36,7 +36,7 @@ import csust.schoolnavi.util.MyLocationListener;
 public class MyMapFragment extends Fragment implements IMapFrag {
     public final int MAP_SEARCHROUTE = 11;
 
-    double latitude, longitude;
+    BDLocation currentLocation;
 
     private MapView bmap;
     private BaiduMap map;
@@ -54,10 +54,17 @@ public class MyMapFragment extends Fragment implements IMapFrag {
 
         return new csust.schoolnavi.util.MyLocationListener.OnLocationListener() {
             @Override
-            public void setCurrentLocation(MyLocationData locData) {
+            public void setCurrentLocation(BDLocation location) {
+                //构造位置信息
+                MyLocationData locData = new MyLocationData.Builder()
+                .accuracy(location.getRadius())
+                        // 此处设置开发者获取到的方向信息，顺时针0-360
+                .direction(100).latitude(location.getLatitude())
+                .longitude(location.getLongitude()).build();
                 map.setMyLocationData(locData);
-                latitude = locData.latitude;
-                longitude = locData.longitude;
+//                latitude = locData.latitude;
+//                longitude = locData.longitude;
+                currentLocation=location;
                 if (isFirstLoc) {
                     isFirstLoc = false;
                     LatLng ll = new LatLng(locData.latitude,
@@ -163,9 +170,9 @@ public class MyMapFragment extends Fragment implements IMapFrag {
             }
             break;
             case R.id.map_loc: {
-                LatLng ll = new LatLng(latitude, longitude);
+                LatLng ll = new LatLng(currentLocation.getLatitude(), currentLocation.getLongitude());
                 map.animateMapStatus(MapStatusUpdateFactory.newLatLng(ll));
-                Log.i("CURRENT LOCATION", String.valueOf(latitude) + " " + String.valueOf(longitude));
+                Toast.makeText(getActivity(),currentLocation.getCity()+":"+currentLocation.getLatitude()+","+currentLocation.getLongitude(),Toast.LENGTH_SHORT).show();
             }
             break;
             default:

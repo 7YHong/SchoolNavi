@@ -51,7 +51,7 @@ public class MainActivity extends FragmentActivity {
         //option.setOpenGps(true);// 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
         option.setScanSpan(5000);       //获取位置的间隔时间
-        option.setNeedDeviceDirect(true);
+        option.setIsNeedAddress(true);  //设置获取地址信息
         mLocClient.setLocOption(option);
         mLocClient.start();
     }

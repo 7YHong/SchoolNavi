@@ -20,14 +20,13 @@ public class MyLocationListener implements BDLocationListener {
 // mapfrag view 销毁后不在处理新接收的位置
         if (location == null || locationListener == null)
             return;
-        MyLocationData locData = new MyLocationData.Builder()
-                .accuracy(location.getRadius())
-                        // 此处设置开发者获取到的方向信息，顺时针0-360
-                .direction(100).latitude(location.getLatitude())
-                .longitude(location.getLongitude()).build();
-
+//        MyLocationData locData = new MyLocationData.Builder()
+//                .accuracy(location.getRadius())
+//                        // 此处设置开发者获取到的方向信息，顺时针0-360
+//                .direction(100).latitude(location.getLatitude())
+//                .longitude(location.getLongitude()).build();
         //位置改变时调用接口将结果反馈到地图上
-        locationListener.setCurrentLocation(locData);
+        locationListener.setCurrentLocation(location);
 
 //        map.setMyLocationData(locData);
 //        if (isFirstLoc) {
@@ -41,6 +40,6 @@ public class MyLocationListener implements BDLocationListener {
 
     //利用此接口将位置信息传出
     public interface OnLocationListener {
-        void setCurrentLocation(MyLocationData locData);
+        void setCurrentLocation(BDLocation location);
     }
 }
